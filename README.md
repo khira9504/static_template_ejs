@@ -1,0 +1,1 @@
+# static_template_ejs
