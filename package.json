@@ -8,7 +8,7 @@
     "clean": "rimraf dist",
     "beautify": "html-beautify dist/**/*.html",
     "dev": "vite",
-    "build": "npm run clean && tsc && vite build && npm run beautify"
+    "build": "npm run clean && tsc && vite build && npm run beautify && rimraf dist/img"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
