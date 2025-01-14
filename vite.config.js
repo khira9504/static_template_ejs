@@ -14,6 +14,16 @@ const jsFiles = Object.fromEntries(
   ])
 );
 
+const cssFiles = Object.fromEntries(
+  globSync('src/assets/styles/**/*.css', { ignore: ['node_modules/**','**/modules/**','**/dist/**'] }).map(file => [
+    path.relative(
+      'src',
+      file.slice(0, file.length - path.extname(file).length)
+    ),
+    fileURLToPath(new URL(file, import.meta.url))
+  ])
+);
+
 const htmlFiles = Object.fromEntries(
   globSync('src/**/*.html', { ignore: ['node_modules/**', '**/dist/**'] }).map(file => [
     path.relative(
@@ -24,7 +34,7 @@ const htmlFiles = Object.fromEntries(
   ])
 );
 
-const inputObject = { ...jsFiles, ...htmlFiles };
+const inputObject = { ...jsFiles, ...cssFiles, ...htmlFiles };
 
 export default defineConfig({
   root: './src',
@@ -33,9 +43,18 @@ export default defineConfig({
     rollupOptions: {
       input: inputObject,
       output: {
-        entryFileNames: `assets/[name].js`,
-        chunkFileNames: `assets/[name].js`,
-        assetFileNames: `assets/[name].[ext]`
+        entryFileNames: `[name].js`,
+        chunkFileNames: `[name].js`,
+        assetFileNames: (assetInfo) => {
+          if (/\.( gif|jpeg|jpg|png|svg|webp| )$/.test(assetInfo.name)) {
+            return 'img/[name].[ext]';
+          }
+          if (/\.css$/.test(assetInfo.name)) {
+            console.log("ok");
+            return '[name].css';
+          }
+          return '[name].[ext]';
+        },
       },
     },
   },
