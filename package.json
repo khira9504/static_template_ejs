@@ -1,20 +1,19 @@
 {
   "name": "static_template_ejs",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "build": "npx webpack"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
-    "html-loader": "^5.1.0",
-    "html-webpack-plugin": "^5.6.3",
-    "template-ejs-loader": "^0.9.4",
-    "ts-loader": "^9.5.2",
-    "typescript": "^5.7.3",
-    "webpack": "^5.97.1",
-    "webpack-cli": "^5.1.4"
+    "typescript": "~5.6.2",
+    "vite": "^6.0.5"
+  },
+  "dependencies": {
+    "glob": "^11.0.1",
+    "vite-plugin-ejs": "^1.7.0"
   }
 }
