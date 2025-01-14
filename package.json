@@ -4,8 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "beautify": "html-beautify dist/**/*.html",
+    "gcc": "git rm -r --cached .",
     "clean": "rimraf dist",
+    "beautify": "html-beautify dist/**/*.html",
     "dev": "vite",
     "build": "npm run clean && tsc && vite build && npm run beautify"
   },
