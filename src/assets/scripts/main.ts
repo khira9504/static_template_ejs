@@ -2,4 +2,4 @@ function test(name: string) {
   return name + "さん";
 };
 
-alert(test("太郎"));
+console.log(test("太郎"));
